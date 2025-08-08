@@ -99,19 +99,14 @@ int ScanDate(FILE * InFile, DATE * Day)
 *****************************************************************************/
 int SScanDate(char *DateStr, DATE * Day)
 {
-  char Str[BUFSIZE + 1];
+  char Str[BUFSIZE + 1] = {0};
   int i;
   int j;
-  int Length;
+  int Length = strlen(DateStr);
   int Number[6];
   int DaysPerMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-  if (Str == NULL)
-    return FALSE;
-
-  strcpy(Str, DateStr);
-
-  Length = strlen(Str);
+  strncpy(Str, DateStr, Length);
 
   for (i = Length - 1, j = 0; i > 0; i--) {
     if (!isdigit((int) Str[i])) {
@@ -633,16 +628,11 @@ int SScanMonthDay(char *DateStr, DATE * Day)
   char Str[BUFSIZE + 1];
   int i;
   int j;
-  int Length;
+  int Length = strlen(DateStr);
   int Number[6];
   int DaysPerMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-  if (Str == NULL)
-    return FALSE;
-
-  strcpy(Str, DateStr);
-
-  Length = strlen(Str);
+  strncpy(Str, DateStr, Length);
 
   for (i = Length - 1, j = 0; i > 0; i--) {
     if (!isdigit((int) Str[i])) {

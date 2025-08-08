@@ -52,7 +52,7 @@ void draw(DATE *Day, int first, int DayStep, MAPSIZE *Map, int NGraphics,
   float temp, surf_swe, pack_swe;
   int index, skip_it;
   char *text;
-  char text2[6];
+  char text2[9];
   char text3[20];
   int length;
   float max_temp;

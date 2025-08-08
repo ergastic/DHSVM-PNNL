@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 #define MAXSIZE 255
 #define NUMROADS 5
@@ -15,7 +16,7 @@
 //     3. map of stream locations (i.e. which columns and rows have channels)
 //     4. map of road segment locations (including id #, length,height,width,aspect,sink)
 //        assume that the dem and mask files have beens stipped of headers
-main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   FILE *fi, *fo;
   int col,row,ncol,nrow,ntot,id,maxid;
   float xll, yll, nodata, cellsize;
@@ -41,7 +42,7 @@ main(int argc, char *argv[]) {
   int totalsinks;
       
   if(argc!=7) {
-    fprintf(stderr,"USAGE:  fixroads <dem> <stream map> <road map in> <road map out> <stream header> <road header>\n",argv[0]);
+    fprintf(stderr,"USAGE:  fixroads <dem> <stream map> <road map in> <road map out> <stream header> <road header>\n");
     exit(0);
   }
 

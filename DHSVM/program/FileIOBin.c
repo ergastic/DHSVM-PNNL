@@ -107,8 +107,8 @@ void MakeFileNameBin(char *Path, char *Str1, char *Str2, char *FileName)
 
   Comments     :
 *****************************************************************************/
-int Write2DMatrixBin(int NY, int NX, int NumberType, char *DataLabel, 
-                     char *Units, void *Matrix, char *FileName)
+int Write2DMatrixBin(int NY, int NX, int NumberType, const char *DataLabel,
+                     const char *Units, void *Matrix, char *FileName)
 {
   const char *Routine = "Write2DMatrixBin";
   FILE *OutFile;                /* output file */

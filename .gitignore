@@ -61,3 +61,6 @@ DHSVM3.2
 #*txt
 
 gitignore
+
+# jetbrains project dir
+.idea

@@ -10,7 +10,7 @@
    ****Usage: nrows ncols binary_flowd_file binary_mask_file stream_map_file n_header_map_file
    Note that n_header_map_file = the number of header lines in the stream map file ********
 
-/* Algorithms used to find the nearest channel:
+* Algorithms used to find the nearest channel:
 1) Recast the flow direction from 1~128
    |-----|-----|-----|      
    | 32  | 64  | 128 |      The central cell searches its nearest channel. The search radius/path coincides with
@@ -32,7 +32,7 @@
 
 Code Credit:   Original code believed to be written by Pascal Storck, 3/13/2001 for the PRISM project Modifed to deal with 
 imperfect basin masks (in coastal areas) and 8-direction flow by Matthew Wiley 12/15/2004.
-/*********************************************************************************************************************************/
+*/
 
 int GetNumber(char *numberStr);
 

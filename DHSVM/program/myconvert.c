@@ -50,7 +50,7 @@ int main(int argc, char **argv)
   InitSize();
 
   if (argc < 7) {
-    fprintf(stderr, usage);
+    fprintf(stderr, "%s", usage);
     exit(EXIT_FAILURE);
   }
 

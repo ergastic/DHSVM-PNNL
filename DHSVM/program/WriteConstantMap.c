@@ -63,7 +63,7 @@ main(int argc, char **argv)
   nCols = atoi(argv[2]);
 
   if (nRows <= 0 || nCols <= 0) {
-    fprintf(stderr, "%s: error: invalid rows and/or columns (%s x %s)\n",
+    fprintf(stderr, "error: invalid rows and/or columns (%s x %s)\n",
             argv[1], argv[2]);
     return(3);
   }
@@ -95,7 +95,7 @@ main(int argc, char **argv)
   }
 
   for (i = 0; i < nSteps; ++i) {
-    Write2DMatrixBin(nCols, nRows, NumberType, DataLabel, Units, Array, outFilename);
+    Write2DMatrixBin(nCols, nRows, NumberType, &DataLabel[0], &Units[0], Array, outFilename);
   }
 
   return (0);

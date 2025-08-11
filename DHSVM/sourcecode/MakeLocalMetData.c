@@ -171,35 +171,36 @@ PIXMET MakeLocalMetData(int y, int x, MAPSIZE *Map, int DayStep, int NDaySteps,
   }				/* end of else MM5==TRUE, i.e. all basic met, except for precip */
   /* has been interpolated */
 
-  /* Here is how the following section works */
-  /* Arc-Info (through use of the hillshade command) will give */
-  /* an output file that ranges from 0 to 255 (the shade factor) */
-  /* These correspond to the reflectance of the direct beam radiation */
-  /* for a given sun position (altitude and azimuth) taking */
-  /* into account the slope and aspect and topographic shading */
-  /* of the local pixel.  If we wanted to use this value directly */
-  /* then the correction to the observed beam w.r.t. a horizontal plane */
-  /* would be   
-  /*        actual = horizontal*shadefactor/255/sin(solar_altitude) */
-  /* the sin(solar_altitude) is necessary to convert horizontal into the maximum */
-  /* possible flux */
+   /*
+   Here is how the following section works
+   Arc-Info (through use of the hillshade command) will give 
+   an output file that ranges from 0 to 255 (the shade factor) 
+   These correspond to the reflectance of the direct beam radiation 
+   for a given sun position (altitude and azimuth) taking 
+   into account the slope and aspect and topographic shading 
+   of the local pixel.  If we wanted to use this value directly 
+   then the correction to the observed beam w.r.t. a horizontal plane 
+   would be   
+          actual = horizontal x shadefactor/255/sin(solar_altitude) 
+   the sin(solar_altitude) is necessary to convert horizontal into the maximum 
+   possible flux 
 
-  /* We can either have DHSVM make the solar_altitude calculation, which */
-  /* is not all that hard, but is prone to user error (e.g. GMT time shifts, etc) */
-  /* or we can simply include the solar_altitude info in the shade_factor */
-  /* the question is how do we include the sin(solar_altitude) while */
-  /* keeping new_shade_factor = shadefactor/255/sin(solar_altitude) defined */
-  /* as a unsigned character */
-  /* Answer:  At sal = 5 degrees max_new_shadefactor = 11.47 */
-  /* i.e. the actual flux normal to sal is 11.47*observed_horizontal_flux */
-  /* if we adopt this 5 degree value as a cutoff, we can then be assured that */
-  /*    0<=newshadefactor<=11.47      and then scale it between 0 and 255 */
-  /* the final calculation becomes,  */
-  /*       actual = horizontal*(float)shadefactor/255.0*11.47 or simply
-  acutal = horizontal*(float)shadefactor/22.23191               */
-  /* thus radiation increases from 0 to 11.47 times the observed value in */
-  /* increments of 4.5 percent */
-  /* a finer resolution than this would require a higher min angle or more memory */
+   We can either have DHSVM make the solar_altitude calculation, which 
+   is not all that hard, but is prone to user error (e.g. GMT time shifts, etc) 
+   or we can simply include the solar_altitude info in the shade_factor 
+   the question is how do we include the sin(solar_altitude) while 
+   keeping new_shade_factor = shadefactor/255/sin(solar_altitude) defined 
+   as a unsigned character 
+   Answer:  At sal = 5 degrees max_new_shadefactor = 11.47 
+   i.e. the actual flux normal to sal is 11.47*observed_horizontal_flux 
+   if we adopt this 5 degree value as a cutoff, we can then be assured that 
+          0<=newshadefactor<=11.47      and then scale it between 0 and 255
+   the final calculation becomes,  
+          actual = horizontal x (float)shadefactor/255.0 x 11.47 or simply
+          actual = horizontal x (float)shadefactor/22.23191
+   thus radiation increases from 0 to 11.47 times the observed value in
+   increments of 4.5 percent
+  a finer resolution than this would require a higher min angle or more memory */
 
   if (Options->Shading == TRUE) {
     /* commented by Ning. the program script used to generate the shadow files

@@ -15,7 +15,7 @@
 # General set up
 # -------------------------------------------------------------
 
-cmake_minimum_required (VERSION 2.8.12)
+cmake_minimum_required (VERSION 4.0.2)
 project (DHSVM)
 
 # this is where extra CMake functions can be found

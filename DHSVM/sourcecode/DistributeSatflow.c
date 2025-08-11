@@ -150,7 +150,7 @@ void DistributeSatflow(int Dt, float DX, float DY, float SatFlow, int NSoilLayer
     Depth += DeepLayerDepth;
     DeepWaterGap = 0.0;
     DeepExtracWater = 0.0;
-    if (Depth > (TotalDepth - *TableDepth)); {
+    if (Depth > (TotalDepth - *TableDepth)) {
       DeepWaterGap = (DeepPorosity - Moist[NSoilLayers]) * DeepLayerDepth * Adjust[NSoilLayers];
       DeepExtracWater = (SatFlow > DeepWaterGap) ? DeepWaterGap : SatFlow;
       SatFlow -= DeepExtracWater;
@@ -162,7 +162,7 @@ void DistributeSatflow(int Dt, float DX, float DY, float SatFlow, int NSoilLayer
         WaterGap = 0.0;
         ExtracWater = 0.0;
         Depth += RootDepth[i];
-        if (Depth > (TotalDepth - *TableDepth)); {
+        if (Depth > (TotalDepth - *TableDepth)) {
           WaterGap = (Porosity[i] - Moist[i]) * RootDepth[i] * Adjust[i];
           ExtracWater = (SatFlow > WaterGap) ? WaterGap : SatFlow;
           SatFlow -= ExtracWater;

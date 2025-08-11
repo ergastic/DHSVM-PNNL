@@ -105,7 +105,7 @@ InitChannel(LISTPTR Input, MAPSIZE *Map, int deltat, CHANNEL *channel,
     printf("\tReading Road data\n");
 
     if ((channel->road_class =
-	 channel_read_classes(StrEnv[road_class].VarStr, road_class) == NULL)) {
+	 channel_read_classes(StrEnv[road_class].VarStr, road_class)) == NULL) {
       ReportError(StrEnv[road_class].VarStr, 5);
     }
     if ((channel->roads =
